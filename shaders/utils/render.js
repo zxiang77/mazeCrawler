@@ -58,7 +58,8 @@ function getFloorBuffer() {
 		];
 
 	var floorInd = [0, 1, 2, 0, 2, 3];
-
+    // console.log("floorVert" );
+    // console.log(floorVert);
 	var floorVertArray = new Float32Array(floorVert);
 	var floorVertBuffer = gl.createBuffer();
 	bindBuffer(gl, floorVertBuffer, floorVertArray, "array");
@@ -255,6 +256,7 @@ function runWebGL(images, skys) {
         var wallData = getWallBuffer();
         var wallVertBuffer = wallData["vertBuffer"];
         var wallIndBuffer = wallData["indBuffer"];
+
         var nFaces = wallData["faceCount"] * 3;
 
         gl.useProgram(wallProgram);
@@ -262,17 +264,16 @@ function runWebGL(images, skys) {
         var projloc = gl.getUniformLocation(wallProgram, "projectionMatrix");
         gl.uniformMatrix4fv(projloc, false, camera.Mper);
         gl.uniformMatrix4fv(mvloc, false, camera.Mobjview);
-        setTexture(gl, wallProgram, "wallTexture", wallTexture, /* texture idx*/ 2);
-
+        setTexture(gl, wallProgram, "wallTexture", wallTexture, 2);
         drawSquares(
             wallVertBuffer,
             wallIndBuffer,
-            gl, 
+            gl,
             wallProgram,
             "position",
             "uv",
             nFaces
-    	);
+        );
         window.requestAnimationFrame(updateWebGL);
 
 	}

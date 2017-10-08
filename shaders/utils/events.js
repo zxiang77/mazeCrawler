@@ -1,15 +1,15 @@
 
-// $("#fovSpinner").spinner({
-// 	min: 10.0,
-// 	max: 80.0,
-// 	step: 0.1
-// });
+$("#fovSpinner").spinner({
+	min: 10.0,
+	max: 80.0,
+	step: 0.1
+});
 
-// $("#eyeHeightSpinner").spinner({
-//     min: 0.1,
-//     max: 1.0,
-//     step:0.01
-// });
+$("#eyeHeightSpinner").spinner({
+    min: 0.1,
+    max: 1.0,
+    step:0.01
+});
 // $( function() {
 //     var dialog, form,
  
@@ -50,36 +50,6 @@
 //   } );
 
 // my function here
-$(function() {
-    var dialog, form, 
-    mazeTextArea = $("mazeTextArea"),
-    allFields = $([]).add(mazeTextArea);
-    dialog = $("#dialog-form").dialog({
-      autoOpen: false,
-      height: 400,
-      width: 350,
-      modal: true,
-      buttons: {
-        "update": updateMaze,
-
-        Cancel: function() {
-            dialog.dialog("close");
-        }
-      },
-      close: function() {
-        form[ 0 ].reset();
-        allFields.removeClass( "ui-state-error" );
-      }
-
-    });
-
-    form = dialog.find( "form" );
-
-    $("#webglCanvas").on("keydown", function (event) {
-        if(event.keyCode == 77) dialog.dialog( "open" );
-    });
-
-});
 
 
 function getFov() {
@@ -210,21 +180,44 @@ function posMod(x, y){
 
 var maze = null;
 function updateMaze() {
-    console.log("updateMaze visited: " + getMazeStrings() + "\n" );
 	maze = createMazeFromStrings(getMazeStrings());
-    console.log(maze);
 	camera.initEye(maze);
 }
 
 updateMaze();
 
 $("#updateMazeButton").on("click", updateMaze);
+
+
+    var dialog, form, 
+    mazeTextArea = $("#mazeTextArea"),
+    allFields = $([]).add(mazeTextArea);
+    dialog = $("#dialog-form").dialog({
+      autoOpen: false,
+      height: 400,
+      width: 350,
+      modal: true,
+      buttons: {
+        "update": updateMaze,
+
+        Cancel: function() {
+            dialog.dialog("close");
+        }
+      }
+      // close: function() {
+      //   form[ 0 ].reset();
+      //   allFields.removeClass( "ui-state-error" );
+      // }
+
+    });
+
+    form = dialog.find( "form" );
+
+
 $("#webglCanvas").on("keydown", function (event) {
+    if(event.keyCode == 77) dialog.dialog( "open" );
     camera.updateEye(event.keyCode, eps);
 });
-
-
-
 
 
 

@@ -16,33 +16,14 @@
 <body>
     <canvas tabindex="1" id="webglCanvas" style="border: none; background-color: black;" width="800" height="600"></canvas>
     <div class="container">
-
-        <div align="center">
-            
-        </div>
-    
-    <div id="dialog-form" title="Maze Map">
-        <p> Update the maze: </p>
-        <form>
-            <fieldset>
-                <input type="button">
-                <label for="maze">Maze</label>
-                <textarea style="font-family: monospace" id="mazeTextArea" cols="25" rows="10">#####
-#...#
-#.#.#
-#N..#
-#####
-</textarea>
-            </fieldset>
-        <!-- <button id="updateMazeButton">Update Maze</button> -->
-        </form>
-
-    </div>
-        <!-- <table id="dialog" class="table table-bordered"> -->
-
-
-
-            <!-- <tr>
+        <table id="dialog-form" class="table table-bordered">
+            <tr>
+                <td align="right"></td>
+                <td>
+                    <input type="button">
+                </td>
+            </tr>
+            <tr>
                 <td align="right"><b>Field of view:</b></td>
                 <td>
                     <input type="text" id="fovSpinner" value="45.0">
@@ -53,8 +34,8 @@
                 <td>
                     <input type="text" id="eyeHeightSpinner" value="0.5">
                 </td>
-            </tr> -->
-            <<!-- tr>
+            </tr>
+            <tr>
                 <td align="right"><b>Maze:</b></td>
                 <td>
                     <textarea style="font-family: monospace" id="mazeTextArea" cols="25" rows="10">#####
@@ -62,12 +43,13 @@
 #.#.#
 #N..#
 #####
-</textarea>
+                    </textarea>
                     <br>
                     <button id="updateMazeButton">Update Maze</button>
                 </td>
             </tr>
-        </table> -->
+        </table>
+
     </div>
 
     <script src="js/jquery-3.1.1.min.js"></script>
